@@ -20,10 +20,24 @@
         android:text="@string/question" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/flagImageVIew"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/spacing"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/image_description"
+        android:src="@mipmap/ic_launcher"
+        />
+
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/image_description"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_gravity="center_horizontal"
+        android:text="@string/guess_country"/>
 
 </android.support.v7.widget.LinearLayoutCompat>
