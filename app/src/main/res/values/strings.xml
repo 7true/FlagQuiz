@@ -15,4 +15,13 @@
     <string name="image_description">Image of the current flag in the quiz</string>
     <string name="default_region">North_America</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="button">Button</string>
+    <string name="textview">TextView</string>
+    <string name="button">Button</string>
+    <string name="button">Button</string>
+    <string name="button">Button</string>
+    <string name="button">Button</string>
+    <string name="button">Button</string>
+    <string name="button">Button</string>
+    <string name="button">Button</string>
 </resources>

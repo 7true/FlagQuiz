@@ -2,4 +2,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="spacing">8dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="answer_size">36sp</dimen>
 </resources>
