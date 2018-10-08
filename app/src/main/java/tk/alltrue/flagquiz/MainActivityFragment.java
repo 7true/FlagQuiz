@@ -1,35 +1,16 @@
 package tk.alltrue.flagquiz;
 
-import android.support.v4.app.Fragment;
-import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -39,7 +20,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -65,7 +52,6 @@ public class MainActivityFragment extends Fragment {
     private ImageView flagImageView;
     private LinearLayout[] guessLinearLayouts;
     private TextView answerTextView;
-
 
 
     public MainActivityFragment() {
@@ -182,8 +168,7 @@ public class MainActivityFragment extends Fragment {
             Drawable flag = Drawable.createFromStream(stream, nextImage);
             flagImageView.setImageDrawable(flag);
             animate(false); // Анимация появления флага на экране
-        }
-        catch (IOException exception) {
+        } catch (IOException exception) {
             Log.e(TAG, "Error loading " + nextImage, exception);
         }
 
@@ -209,4 +194,41 @@ public class MainActivityFragment extends Fragment {
 
 
     }
+
+    private void animate(boolean animateOut) {
+        // Предотвращение анимации интерфейса для первого флага
+        if (correctAnswers == 0)
+            return;
+        // Вычисление координат центра
+        int centerX = (quizLinearLayout.getLeft() +
+                quizLinearLayout.getRight()) / 2;
+        int centerY = (quizLinearLayout.getTop() +
+                quizLinearLayout.getBottom()) / 2;
+        // Вычисление радиуса анимации
+        int radius = Math.max(quizLinearLayout.getWidth(),
+                quizLinearLayout.getHeight());
+        Animator animator;
+        // Если изображение должно исчезать с экрана
+        if (animateOut) {
+            // Создание круговой анимации
+            animator = ViewAnimationUtils.createCircularReveal(
+                    quizLinearLayout, centerX, centerY, radius, 0);
+            animator.addListener(
+                    new AnimatorListenerAdapter() {
+                        // Вызывается при завершении анимации
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            loadNextFlag();
+                        }
+                    }
+            );
+        } else { // Если макет quizLinearLayout должен появиться
+            animator = ViewAnimationUtils.createCircularReveal(
+                    quizLinearLayout, centerX, centerY, 0, radius);
+        }
+        animator.setDuration(500); // Анимация продолжительностью 500 мс
+        animator.start(); // Начало анимации
+    }
+
+
 }
