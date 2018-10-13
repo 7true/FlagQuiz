@@ -347,8 +347,9 @@ public class MainActivityFragment extends Fragment {
                 flagImageView.startAnimation(shakeAnimation);
 
                 answerTextView.setText(R.string.incorrect_answer);
-                answerTextView.setTextColor(getResources().getColor(
-                        R.color.incorrect_answer, getContext().getTheme()));
+                answerTextView.setTextColor(
+                        ContextCompat.getColor(getContext(), R.color.incorrect_answer)
+                        );
                 guessButton.setEnabled(false);
             }
         }
