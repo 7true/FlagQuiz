@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -317,8 +318,8 @@ public class MainActivityFragment extends Fragment {
                 // display correct answer in green text
                 answerTextView.setText(answer + "!");
                 answerTextView.setTextColor(
-                        getResources().getColor(R.color.correct_answer,
-                                getContext().getTheme()));
+                        ContextCompat.getColor(getContext(), R.color.correct_answer)
+                        );
 
                 disableButtons(); // disable all guess Buttons
 
