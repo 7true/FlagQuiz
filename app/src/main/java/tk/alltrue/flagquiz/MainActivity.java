@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onSharedPreferenceChanged(
                         SharedPreferences sharedPreferences, String key) {
-                    preferencesChanged = true; // user changed app setting
+                    preferencesChanged = true; // user changed app settings
 
                     MainActivityFragment quizFragment = (MainActivityFragment)
                             getSupportFragmentManager().findFragmentById(
